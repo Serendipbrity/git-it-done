@@ -1,5 +1,9 @@
-var getUserRepos = function() {
-    fetch("http://api.github.com/users/octocat/repos");
+var getUserRepos = function(user) {
+   var apiUrl = "http://api.github.com/users/" + user + "/repos";
+   fetch(apiUrl).then(function(response) {
+       response.json().then(function(data) {
+        console.log(data);
+       });
+});
 };
-
-getUserRepos();
+getUserRepos("serendipbrity");
