@@ -24,15 +24,27 @@ var getUserRepos = function(user) {
    var apiUrl = "http://api.github.com/users/" + user + "/repos";
 
    fetch(apiUrl).then(function(response) {
-       console.log(response);
+       // request was successful
+       if (response.ok){
        response.json().then(function(data) {
         displayRepos(data, user);
        });
+    } else {
+        alert("Error: Github User Not Found");
+    }
+    })
+    .catch(function(error) {
+       alert("Unable to connect to Github");
     });
 };
 
 // search term is the user input
 var displayRepos = function(repos, searchTerm) {
+    // check if api returned any repos
+    if (repos.length === 0) {
+        repoContainerEl.textContent = "No repositories found.";
+        return;
+    }
     console.log(repos);
     console.log(searchTerm);
     // clear old content
