@@ -1,5 +1,5 @@
 # git-it-done
-
+A website to look up github repos
 # published url
 https://serendipbrity.github.io/git-it-done/
 
